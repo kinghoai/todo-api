@@ -102,4 +102,24 @@ class TodosController extends Controller
 
         return response('da xoa');
     }
+
+    public function updateAll(Request $request)
+    {
+        $data = $request->validate([
+            'completed' => 'required|boolean',
+        ]);
+        Todo::query()->update($data);
+
+        return response('UpdatedAll', 200);
+    }
+
+    public function destroyCompleted(Request $request)
+    {
+        $request->validate([
+            'todos' => 'required|array'
+        ]);
+        Todo::destroy([$request->todos]);
+
+        return response('deleted completed', 200);
+    }
 }
