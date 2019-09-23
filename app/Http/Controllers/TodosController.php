@@ -118,8 +118,7 @@ class TodosController extends Controller
         $request->validate([
             'todos' => 'required|array'
         ]);
-        Todo::destroy([$request->todos]);
-
-        return response('deleted completed', 200);
+        Todo::destroy($request->todos);
+        return response($request->todos);
     }
 }
