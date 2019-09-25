@@ -24,3 +24,7 @@ Route::post('/register', 'AuthController@register');
 Route::resource('todo', 'TodosController');
 Route::patch('/todoCheckAll', 'TodosController@updateAll');
 Route::delete('/todoDeleteCompleted', 'TodosController@destroyCompleted');
+
+Route::group(['prefix' => 'user','middleware' => 'auth:api'],function(){
+    Route::post('/logout', 'AuthController@logout');
+});
