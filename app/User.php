@@ -39,6 +39,6 @@ class User extends Authenticatable
     ];
 
     public function todo () {
-        return $this->hasMany('todo');
+        return $this->hasMany('App\Todo');
     }
 }

@@ -8,11 +8,15 @@ class Todo extends Model
 {
     protected $fillable = [
         'name',
-        'completed'
+        'completed',
+        'user_id'
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
+    public function users() {
+        return $this->belongsTo('App\User');
+    }
 }

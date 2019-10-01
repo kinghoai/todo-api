@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Todo;
+use Illuminate\Support\Facades\Auth;
 
 class TodosController extends Controller
 {
@@ -12,9 +13,9 @@ class TodosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Todo::all();
+        return Todo::where('user_id', $request->id)->get();
     }
 
     /**
@@ -23,9 +24,7 @@ class TodosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-
-    }
+    { }
 
     /**
      * Store a newly created resource in storage.
@@ -36,7 +35,7 @@ class TodosController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-           'name' => 'required|string',
+            'name' => 'required|string',
             'completed' => 'required|boolean'
         ]);
 

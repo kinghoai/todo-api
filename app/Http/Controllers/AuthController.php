@@ -46,7 +46,6 @@ class AuthController extends Controller
 
     public function login(Request $request) {
         try{
-            
             if(Auth::attempt(['email' => $request->username, 'password' => $request->password])) {
                 $user = User::where('email',$request->username)->first();
                 Auth::login($user);
